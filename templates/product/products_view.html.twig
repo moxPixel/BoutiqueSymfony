@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductController!{% endblock %}
+
+{% block body %}
+
+<main role="main">
+
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">Album example</h1>
+    <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+    <p>
+      <a href="#" class="btn btn-primary my-2">Main call to action</a>
+      <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+    </p>
+  </div>
+</section>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+
+    <div class="row">
+        {% for product in products %}
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+        <h1 class="text-center">  <img class="card-img-top" style="width:150px;" src="{{asset('assets/uploads/'~ product.picture)}}" alt="Card image cap"></h1>
+          <div class="card-body">
+            <p class="text-muted">{{product.name}}</p>
+            <p class="card-text">{{product.subtitle}}</p>
+            <p class="card-text">{{product.description}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="">
+                <button type="m-2 button" class="btn btn-sm btn-outline-secondary">Voir</button>
+                <button type="m-2 button" class="btn btn-sm btn-success">Ajouter au panier</button>
+              </div>
+              <small class="text-success">{{(product.price / 100) | number_format(2,',','.')}}€</small>
+            </div>
+          </div>
+        </div>
+      </div>
+       {% endfor %}
+    </div>
+  </div>
+</div>
+
+</main>
+{% endblock %}
